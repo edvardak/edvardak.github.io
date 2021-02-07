@@ -26,7 +26,8 @@ h1, h2, h3 {
 
 .bio {
     display: grid;
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2%;
 }
 
 .content {
