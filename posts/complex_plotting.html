@@ -25,7 +25,9 @@
 
             <div class="section">
                 <h1>Plotting complex functions with Julia</h1>
-                <p>TLDR: scroll down for cool 3D plots.</p>
+                <p>2021-03-27</p>
+                <br>
+                <p style="text-align: center;">TLDR: scroll down for cool 3D plots.</p>
                 <h2>Mathematical introduction</h2>
                 <p>
                     In this post we wish to visualize complex valued functions of a single complex variable, i.e. functions \(f : \mathbb{C} \to \mathbb{C}\) taking a complex number \(z\) to \(f(z)\), e.g. \(f(z)=z^2\). The usual manner of visualisation for a real function \(g : \mathbb{R} \to \mathbb{R}\) is to look at its graph 
@@ -119,6 +121,16 @@
                 </ol>
                 <p>
                     We've now seen many 3d plots of the modulus of a complex function. Hopefully this should give you some sort of new intuition for how complex valued functions behave. To really complete the vizualisations done here, one should also plot the argument \(\theta(f)\) of the function. If you looked at the <a href="https://en.wikipedia.org/wiki/Domain_coloring">domain coloring</a> technique from above, you saw that this could be visualized using coloring, which is the next natural step to do. However, we have not found a satisfacory way to do so with Julia and plotly so far.
+                </p>
+                <p>
+                    If the visualisation of complex functions interest you, you may consider checking out the following links:
+                    <ul>
+                        <li><a href="https://nbviewer.jupyter.org/github/empet/Math/blob/master/DomainColoring.ipynb">Domain coloring with Python</a></li>
+                        <li><a href="https://users.mai.liu.se/hanlu09/complex/">Hans Lundmark's complex analysis pages
+                        </a></li>
+                        <li><a href="https://www.ams.org/notices/201106/rtx110600768p.pdf">Phase Plots of Complex
+                            Functions: A Journey in Illustration</a></li>
+                    </ul>
                 </p>
             </div>
             
