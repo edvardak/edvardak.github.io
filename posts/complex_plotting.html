@@ -63,13 +63,12 @@
                     </ol>
                     See <a href="https://techytok.com/lesson-plotting/">here</a> for an introduction to plotting with Julia.
                 </p>
-                <p>One last comment before we get to the plotting: taking the modulus can result in very large numbers, making it hard to see the structure for smaller values, we therefore plot scaled versions using \(\ln(1+|f(z)|)\) or \(\min(|f(z)|,4)\) instead. Let's get plotting!
+                <p>One last comment before we get to the plotting: taking the modulus can result in very large numbers, making it hard to see the structure for smaller values, we therefore plot scaled versions using \(\ln(1+|f(z)|)\) or \(\min(|f(z)|,4)\) instead. All code can be found <a href="https://github.com/edvardak/complex_plotting">here</a>. Let's get plotting!
                 </p>
                 <ol>
                     <li>
                         <p>
-                            First we plot the modulus of the polynomial \(f(z)=z^6 -2z+5\), or rather \(\ln(1+|f(z)|)\). The Julia code is
-
+                            First we plot the modulus of the polynomial \(f(z)=z^6 -2z+5\), or rather \(\ln(1+|f(z)|)\),
                             giving the following 3d graphic:
                             <div style="text-align: center;">
                                 <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/polynomial.html"></iframe>
