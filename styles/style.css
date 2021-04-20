@@ -66,3 +66,8 @@ td
 {
     padding:0 15px;
 }
+
+.listoftalks {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+}
