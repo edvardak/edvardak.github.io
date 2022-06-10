@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotting complex functions with Julia</title>
+    <link href="../styles/style.css" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+
+
+<body>
+    <div class="grid">
+        <div class="header">
+            <nav>
+                <a href="../index.html">Home</a>
+            </nav>
+        </div>
+        <div class="content">
+
+
+            <div class="section">
+                <h1>What is the sheaf of <i>meromorphic \(p\)-forms</i> \(\Omega_X^k(*D)\)?</h1>
+                <p>2022-06-??</p>
+            <br>
+                <p>
+
+                </p>     
+                <p>
+                    I was recently reading about <i>Grothendieck's Algebraic de Rham Theorem</i>  in Griffiths and Harris, page 453, which states that, for \(X\) a complex manifold and \(D\) a simple normal crossing divisor on \(X\), the complex cohomology of \(U:= X\setminus D\) can be computed as 
+                    $$H^k(U;\mathbb{C}) = \mathbb{H}^k (X,\Omega_X^\bullet(\log(D))),$$
+                    i.e. it is the hypercohomology of the so called <i>logarithmic de Rham complex</i> \(\Omega_X^\bullet(\log(D))\) of sheaves on \(X\).
+                </p>
+                <p>
+                    This is a complex of sheaves whose $p$-th term is the sheaf $\Omega_X^p (\log(D))$, which in turn is defined as the subsheaf of the sheaf $\Omega_X^i(*D)$ of <i>meromorphic $p$-forms that are holomorphic on $X\setminus D$</i>. Then $\Omega_X^1 (\log(D))$ is stated to be locally free, and [PT08] gives the description, for $p\in D$ and $(V,z_1,\dots,z_n)$ on $X$ containing $p$ such that $D$ has equation $z_1\dots z_k =0$, that $$\Omega_X^1(\log(D))_p=\mathcal{O}_{X,p}\frac{dz_1}{z_1}\oplus \dots \oplus \mathcal{O}_{X,p}\frac{dz_k}{z_k} \oplus \mathcal{O}_{X,p}dz_{k+1}\oplus \dots \oplus \mathcal{O}_{X,p}dz_{n}.$$
+                    Then the sheaf $\Omega_X^q (\log (D))$ is defined to be the $p$-th wedge $\bigwedge^q \Omega_X^1 (\log (D))$.
+                    While one can have a certain intuition about what this sheaf is, I find it unclear what relation it has to the sheaf $\Omega_X^i(*D)$. On page 135 of [GH], there is a definition of a meromorphic section of a line bundle, and it would be tempting to define meromorphic forms as such sections of $\Omega_X^p$, but this is not exactly what we want as $\Omega_X^p$ is not a line bundle.
+                </p>
+                <p>
+                    Chasing through the literature, Deligne uses the complex  \(\Omega_X^\bullet(\log(D))\) in the [Hodge 1] paper to define a mixed Hodge structure on the cohomology of $U$, and cites [Del70, Section II.3.1-7] for proofs. Going there however, the definition of meromorphic sections given on page 66 is also quite cryptic. Going back to what I believe is the original source of the theorem by Grothendieck [Gr66, p. 97], we find a completely satisfactory definition in a footnote (which is, in retrospect, the one given by Deligne).
+                </p>
+                <p>
+                    We reproduce the definition here, and encourage the reader to refer back to the original paper, where the statement is given in terms of complex analytic spaces.
+                    <blockquote>
+                        <b>Definition [Gr66,p. 97]</b>
+                    <p>
+                        Let $\mathscr{F}$ be a coherent sheaf on $U$. Suppose that $\mathscr{F}$ on $U$ can be extended, on an open neighbourhood $W_y$ in $X$ of any point $y\in D$, into a coherent sheaf $\mathscr{G}$.
+                    </p>
+                    <p>
+                        Then the <i>sheaf $\mathscr{F}(*D)$ of meromorphic sections of $\mathscr{F}$ that are holomorphic on $U$</i> is the subsheaf of $f_*(\mathscr{F})$ whose sections on an open set $V$, are the sections $\omega$ of $\mathscr{F}$ on $V\cap U$ such that, for every $y\in V\cap D$, there exists an open neighbourhood $W\subset W_y \cap V$ of $y$, a section $\omega'$ of $\mathscr{G}$, and an integer $n$, such that $\omega|_{W\cap U} = (\omega'/(\phi')^n)|_{W\cap U}$, where $\omega'$ is the defining equation of $Y$ in $X$.
+                    </p>
+                    <p>
+                        It can be checked that these $\omega$ indeed are the sections of a subsheaf $\mathscr{F}(*D)$ of $f_* (\mathscr{F})$, and that this subsheaf does not depend on the choices performed.
+                    </p>
+                    </blockquote>
+                </p>
+                <p>
+                    It is stated that when $\mathscr{F}$ can be extended globally to a coherent sheaf $\mathscr{G}$ on $X$, there is a natural isomorphism $$\mathscr{F}(*D)\cong {\lim_{\longrightarrow}} \mathscr{Hom}_{\mathscr{O}_X}(\mathscr{I}^n, \mathscr{G}),$$
+                    where $\mathscr{I}$ is a coherent sheaf of ideals on $X$ defining $D$.
+                </p>
+                <p>
+                    Then finally, in the case of the sheaf of holomorphic $p$-forms $\Omega_U^p$ on $U$, one can take $\mathscr{G}=\Omega_X^p$. This gives a complete definition of what the sheaf $\Omega_X^p (*D)$ is.
+                </p>
+            </div>
+            <div>
+                <b>Bibliography:</b>
+                <ul>
+                    <li>
+                        []
+                            AUTHOR = {Deligne, Pierre},
+                             TITLE = {\'{E}quations diff\'{e}rentielles \`a points singuliers r\'{e}guliers},
+                            SERIES = {Lecture Notes in Mathematics, Vol. 163},
+                         PUBLISHER = {Springer-Verlag, Berlin-New York},
+                              YEAR = {1970},
+                             PAGES = {iii+133},
+                           MRCLASS = {14D05 (14C30)},
+                          MRNUMBER = {0417174},
+                        MRREVIEWER = {Helmut Hamm},
+                        }
+                        
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+@book {MR2393625,
+    AUTHOR = {Peters, Chris A. M. and Steenbrink, Joseph H. M.},
+     TITLE = {Mixed {H}odge structures},
+    SERIES = {Ergebnisse der Mathematik und ihrer Grenzgebiete. 3. Folge. A
+              Series of Modern Surveys in Mathematics [Results in
+              Mathematics and Related Areas. 3rd Series. A Series of Modern
+              Surveys in Mathematics]},
+    VOLUME = {52},
+ PUBLISHER = {Springer-Verlag, Berlin},
+      YEAR = {2008},
+     PAGES = {xiv+470},
+      ISBN = {978-3-540-77015-2},
+   MRCLASS = {14C30 (14D07 32G20 32J25 32S35)},
+  MRNUMBER = {2393625},
+MRREVIEWER = {Matt Kerr},
+}
+
+@article {MR199194,
+    AUTHOR = {Grothendieck, A.},
+     TITLE = {On the de {R}ham cohomology of algebraic varieties},
+   JOURNAL = {Inst. Hautes \'{E}tudes Sci. Publ. Math.},
+  FJOURNAL = {Institut des Hautes \'{E}tudes Scientifiques. Publications
+              Math\'{e}matiques},
+    NUMBER = {29},
+      YEAR = {1966},
+     PAGES = {95--103},
+      ISSN = {0073-8301},
+   MRCLASS = {14.55 (32.44)},
+  MRNUMBER = {199194},
+MRREVIEWER = {M. F. Atiyah},
+       URL = {http://www.numdam.org/item?id=PMIHES_1966__29__95_0},
+}
