@@ -71,3 +71,20 @@ td
     font-size: 14px;
     font-variant-numeric: tabular-nums;
 }
+
+.section svg {
+    display: block;
+    margin: auto;
+}
+
+
+pre code {
+    background-color: #eee;
+    /* border: 1px solid #999; */
+    padding: 20px;
+    
+    background-color: #CCCCCC;
+    border-color: #444;
+    display: block;
+    border: 1px solid;
+}
