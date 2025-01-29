@@ -14,137 +14,132 @@
 
 
 <body>
-    <div class="grid">
         <div class="header">
             <nav>
                 <a href="../index.html">Home</a>
             </nav>
         </div>
-        <div class="content">
 
 
-            <div class="section">
-                <h1>Plotting complex functions with Julia</h1>
-                <p>2021-03-27</p>
-                <br>
-                <p style="text-align: center;">TLDR: scroll down for cool 3D plots.</p>
-                <h2>Mathematical introduction</h2>
-                <p>
-                    In this post we wish to visualize complex valued functions of a single complex variable, i.e. functions \(f : \mathbb{C} \to \mathbb{C}\) taking a complex number \(z\) to \(f(z)\), e.g. \(f(z)=z^2\). The usual manner of visualisation for a real function \(g : \mathbb{R} \to \mathbb{R}\) is to look at its graph 
-                    $$\Gamma_g = \set{(x,g(x))\mid x\in \mathbb{R}}\subset \mathbb{R}\times \mathbb{R},$$
-                    that is look at each number \(x \in \mathbb{R}\) and place a point at height \(g(x)\) over it. For instance, for \(g(x)=\sin(x)\), we get the usual graph:
-                </p>
-                <p style="text-align: center;">
-                    <img src="complex_plotting_plots/sin.png" alt="graph_of_sin_function">
-                </p>
-                <p>
-                    How can we do this for complex valued functions?
-                </p>
-                <p>
-                    Recall that a complex number \(z\) can be written uniquely as in terms of its real and imaginary parts \(z=a+ib\), for \(a,b \in \mathbb{R}\). Therefore, we can in some sense identify the complex numbers \(\mathbb{C}\) with pairs of real numbers \(\mathbb{R}^2\). If we rewrite our complex function \(f : \mathbb{C} \to \mathbb{C}\) instead as a function \(f : \mathbb{R}^2 \to \mathbb{R}^2\), we see that the graph of the function 
-                    $$\Gamma_f = \set{(v,g(v)))\mid v\in \mathbb{R}^2}\subset \mathbb{R}^2\times \mathbb{R}^2,$$
-                    lives in a 4-dimensional space, hence we cannot visualize it!
-                </p>
-                <p>
-                    While we can't see the whole graph of the function, we can still get part of the way there. One approach to visualizing a complex function is using <a href="https://en.wikipedia.org/wiki/Domain_coloring">domain coloring</a>.
-                    In this post, we will aim to instead visualize the modulus of a complex function.
-                </p>
-                <p>
-                    Recall that for any complex number \(z=a+ib\in \mathbb{C}\), we have the modulus \(|z|=\sqrt{a^2 +b^2} \in \mathbb{R}\). This gives us a new function \(|\cdot|:\mathbb{C}\to \mathbb{R}\), which we will call the modulus function. By composing the original function \(f\) with \(|\cdot|\), we get a new function
-                    $$|f| : \mathbb{C}\xrightarrow{f} \mathbb{C} \xrightarrow{|\cdot|} \mathbb{R}.$$
-                    Now this can be viewed as a function \(|f| : \mathbb{R}^2 \to \mathbb{R} \), and so its graph is 
-                    $$\Gamma_{|f|} = \set{(v,|f(v)|)\mid v\in \mathbb{R}^2}\subset \mathbb{R}^2\times \mathbb{R},$$
-                    which lives in a 3-dimensional space and can therefore be visualized!
-                </p>
-                <h2>Using Julia for plotting</h2>
-                <p>
-                    Since we now know that for a complex function \(f : \mathbb{C} \to \mathbb{C}\) we can plot its modulus \(|f| \colon \mathbb{R}^2 \to \mathbb{R}\) (where we identified \(\mathbb{C}\) and \(\mathbb{R}^2\)). We will do this using the programming language <a href="https://julialang.org/">Julia</a>. Julia has two advantages in the current context:
-                    <ol>
-                        <li>It supports complex numbers for the complex valued functions we will want to visualize (e.g. sums, exponents, \(\sin, \exp,\) ...), and </li>
-                        <li>it can use <a href="https://plotly.com/">plotly</a> to create nice interactive 3D plots that can be shared in the browser.</li>
-                    </ol>
-                    See <a href="https://techytok.com/lesson-plotting/">here</a> for an introduction to plotting with Julia.
-                </p>
-                <p>One last comment before we get to the plotting: taking the modulus can result in very large numbers, making it hard to see the structure for smaller values, we therefore plot scaled versions using \(\ln(1+|f(z)|)\) or \(\min(|f(z)|,4)\) instead. All code can be found <a href="https://github.com/edvardak/complex_plotting">here</a>. Let's get plotting!
-                </p>
+        <section>
+            <h1>Plotting complex functions with Julia</h1>
+            <p>2021-03-27</p>
+            <br>
+            <p style="text-align: center;">TLDR: scroll down for cool 3D plots.</p>
+            <h2>Mathematical introduction</h2>
+            <p>
+                In this post we wish to visualize complex valued functions of a single complex variable, i.e. functions \(f : \mathbb{C} \to \mathbb{C}\) taking a complex number \(z\) to \(f(z)\), e.g. \(f(z)=z^2\). The usual manner of visualisation for a real function \(g : \mathbb{R} \to \mathbb{R}\) is to look at its graph 
+                $$\Gamma_g = \set{(x,g(x))\mid x\in \mathbb{R}}\subset \mathbb{R}\times \mathbb{R},$$
+                that is look at each number \(x \in \mathbb{R}\) and place a point at height \(g(x)\) over it. For instance, for \(g(x)=\sin(x)\), we get the usual graph:
+            </p>
+            <p style="text-align: center;">
+                <img src="complex_plotting_plots/sin.png" alt="graph_of_sin_function">
+            </p>
+            <p>
+                How can we do this for complex valued functions?
+            </p>
+            <p>
+                Recall that a complex number \(z\) can be written uniquely as in terms of its real and imaginary parts \(z=a+ib\), for \(a,b \in \mathbb{R}\). Therefore, we can in some sense identify the complex numbers \(\mathbb{C}\) with pairs of real numbers \(\mathbb{R}^2\). If we rewrite our complex function \(f : \mathbb{C} \to \mathbb{C}\) instead as a function \(f : \mathbb{R}^2 \to \mathbb{R}^2\), we see that the graph of the function 
+                $$\Gamma_f = \set{(v,g(v)))\mid v\in \mathbb{R}^2}\subset \mathbb{R}^2\times \mathbb{R}^2,$$
+                lives in a 4-dimensional space, hence we cannot visualize it!
+            </p>
+            <p>
+                While we can't see the whole graph of the function, we can still get part of the way there. One approach to visualizing a complex function is using <a href="https://en.wikipedia.org/wiki/Domain_coloring">domain coloring</a>.
+                In this post, we will aim to instead visualize the modulus of a complex function.
+            </p>
+            <p>
+                Recall that for any complex number \(z=a+ib\in \mathbb{C}\), we have the modulus \(|z|=\sqrt{a^2 +b^2} \in \mathbb{R}\). This gives us a new function \(|\cdot|:\mathbb{C}\to \mathbb{R}\), which we will call the modulus function. By composing the original function \(f\) with \(|\cdot|\), we get a new function
+                $$|f| : \mathbb{C}\xrightarrow{f} \mathbb{C} \xrightarrow{|\cdot|} \mathbb{R}.$$
+                Now this can be viewed as a function \(|f| : \mathbb{R}^2 \to \mathbb{R} \), and so its graph is 
+                $$\Gamma_{|f|} = \set{(v,|f(v)|)\mid v\in \mathbb{R}^2}\subset \mathbb{R}^2\times \mathbb{R},$$
+                which lives in a 3-dimensional space and can therefore be visualized!
+            </p>
+            <h2>Using Julia for plotting</h2>
+            <p>
+                Since we now know that for a complex function \(f : \mathbb{C} \to \mathbb{C}\) we can plot its modulus \(|f| \colon \mathbb{R}^2 \to \mathbb{R}\) (where we identified \(\mathbb{C}\) and \(\mathbb{R}^2\)). We will do this using the programming language <a href="https://julialang.org/">Julia</a>. Julia has two advantages in the current context:
                 <ol>
-                    <li>
-                        <p>
-                            First we plot the modulus of the polynomial \(f(z)=z^6 -2z+5\), or rather \(\ln(1+|f(z)|)\),
-                            giving the following 3D graphic:
-                            <div style="text-align: center;">
-                                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/polynomial.html"></iframe>
-                            </div>
-                            Recognize the 6 zeros of the function, as we would expect from the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra">fundamental theorem of algebra</a>.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Next we plot the <a href="https://en.wikipedia.org/wiki/Meromorphic_function">meromorphic</a>  function \(f(z)=(z^2+2)(z^2-3)/(z^2)\):
-                            <div style="text-align: center;">
-                                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/meromorphic.html"></iframe>
-                            </div>
-
-                            Notice the pole (of order 2) at 0, and the 4 roots of the polynomial.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Now we turn to \(f(z)=e^{-1/z}\):
-                            <div style="text-align: center;">
-                                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/e_z_inv.html"></iframe>
-                            </div>
-
-                            Notice the <a href="https://en.wikipedia.org/wiki/Essential_singularity">essential singularity</a> at \(z=0\).
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Next let's look at \(f(z)=\sin(z)\):
-                            <div style="text-align: center;">
-                                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/sin.html"></iframe>
-                            </div>
-
-                            where we can see that, while the zeros along the real line repeat with period \(\pi\), the modulus grows fast in the imaginary direction.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                           We can also plot the <a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma function</a> \( \Gamma(z)\):
-                            <div style="text-align: center;">
-                                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/gamma.html"></iframe>
-                            </div>
-                           Here you can see the first few poles of \(\Gamma\) along the non-positive integers.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                           Finally, we visualize the <a href="https://en.wikipedia.org/wiki/Riemann_zeta_function">Riemann zeta function</a> \(\zeta(s)\):
-                            <div style="text-align: center;">
-                                <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/zeta.html"></iframe>
-                            </div>
-
-                            Notice the zeros lining up on the \(x=\mathfrak{Re}(s)=1/2\) line, as predicted by the famous <a href="https://en.wikipedia.org/wiki/Riemann_hypothesis">Riemann hypothesis</a>!
-                        </p>
-                    </li>
+                    <li>It supports complex numbers for the complex valued functions we will want to visualize (e.g. sums, exponents, \(\sin, \exp,\) ...), and </li>
+                    <li>it can use <a href="https://plotly.com/">plotly</a> to create nice interactive 3D plots that can be shared in the browser.</li>
                 </ol>
-                <p>
-                    We've now seen many 3D plots of the modulus of a complex function. Hopefully this should give you some sort of new intuition for how complex valued functions behave. To really complete the vizualisations done here, one should also plot the argument \(\theta(f)\) of the function. If you looked at the <a href="https://en.wikipedia.org/wiki/Domain_coloring">domain coloring</a> technique from above, you saw that this could be visualized using coloring, which is the next natural step to do. However, we have not found a satisfacory way to do so with Julia and plotly so far.
-                </p>
-                <p>
-                    If the visualisation of complex functions interest you, you may consider checking out the following links:
-                    <ul>
-                        <li><a href="https://nbviewer.jupyter.org/github/empet/Math/blob/master/DomainColoring.ipynb">Domain coloring with Python</a></li>
-                        <li><a href="https://users.mai.liu.se/hanlu09/complex/">Hans Lundmark's complex analysis pages
-                        </a></li>
-                        <li><a href="https://www.ams.org/notices/201106/rtx110600768p.pdf">Phase Plots of Complex
-                            Functions: A Journey in Illustration</a></li>
-                    </ul>
-                </p>
-            </div>
-            
-        </div>
-    </div>
+                See <a href="https://techytok.com/lesson-plotting/">here</a> for an introduction to plotting with Julia.
+            </p>
+            <p>One last comment before we get to the plotting: taking the modulus can result in very large numbers, making it hard to see the structure for smaller values, we therefore plot scaled versions using \(\ln(1+|f(z)|)\) or \(\min(|f(z)|,4)\) instead. All code can be found <a href="https://github.com/edvardak/complex_plotting">here</a>. Let's get plotting!
+            </p>
+            <ol>
+                <li>
+                    <p>
+                        First we plot the modulus of the polynomial \(f(z)=z^6 -2z+5\), or rather \(\ln(1+|f(z)|)\),
+                        giving the following 3D graphic:
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/polynomial.html"></iframe>
+                        </div>
+                        Recognize the 6 zeros of the function, as we would expect from the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra">fundamental theorem of algebra</a>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Next we plot the <a href="https://en.wikipedia.org/wiki/Meromorphic_function">meromorphic</a>  function \(f(z)=(z^2+2)(z^2-3)/(z^2)\):
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/meromorphic.html"></iframe>
+                        </div>
+
+                        Notice the pole (of order 2) at 0, and the 4 roots of the polynomial.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Now we turn to \(f(z)=e^{-1/z}\):
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/e_z_inv.html"></iframe>
+                        </div>
+
+                        Notice the <a href="https://en.wikipedia.org/wiki/Essential_singularity">essential singularity</a> at \(z=0\).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Next let's look at \(f(z)=\sin(z)\):
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/sin.html"></iframe>
+                        </div>
+
+                        where we can see that, while the zeros along the real line repeat with period \(\pi\), the modulus grows fast in the imaginary direction.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                       We can also plot the <a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma function</a> \( \Gamma(z)\):
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/gamma.html"></iframe>
+                        </div>
+                       Here you can see the first few poles of \(\Gamma\) along the non-positive integers.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                       Finally, we visualize the <a href="https://en.wikipedia.org/wiki/Riemann_zeta_function">Riemann zeta function</a> \(\zeta(s)\):
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="600px" frameborder="0" scrolling="no" src="complex_plotting_plots/zeta.html"></iframe>
+                        </div>
+
+                        Notice the zeros lining up on the \(x=\mathfrak{Re}(s)=1/2\) line, as predicted by the famous <a href="https://en.wikipedia.org/wiki/Riemann_hypothesis">Riemann hypothesis</a>!
+                    </p>
+                </li>
+            </ol>
+            <p>
+                We've now seen many 3D plots of the modulus of a complex function. Hopefully this should give you some sort of new intuition for how complex valued functions behave. To really complete the vizualisations done here, one should also plot the argument \(\theta(f)\) of the function. If you looked at the <a href="https://en.wikipedia.org/wiki/Domain_coloring">domain coloring</a> technique from above, you saw that this could be visualized using coloring, which is the next natural step to do. However, we have not found a satisfacory way to do so with Julia and plotly so far.
+            </p>
+            <p>
+                If the visualisation of complex functions interest you, you may consider checking out the following links:
+                <ul>
+                    <li><a href="https://nbviewer.jupyter.org/github/empet/Math/blob/master/DomainColoring.ipynb">Domain coloring with Python</a></li>
+                    <li><a href="https://users.mai.liu.se/hanlu09/complex/">Hans Lundmark's complex analysis pages
+                    </a></li>
+                    <li><a href="https://www.ams.org/notices/201106/rtx110600768p.pdf">Phase Plots of Complex
+                        Functions: A Journey in Illustration</a></li>
+                </ul>
+            </p>
+        </section>
 </body>
 
 </html>

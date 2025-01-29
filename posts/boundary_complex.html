@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<html>
 <head>
 
 
@@ -20,92 +21,91 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 
 <body>
-    <div class="grid">
-        <div class="header">
-            <nav>
-                <a href="../index.html">Home</a>
-            </nav>
-        </div>
-        <div class="content">
-            <div class="section">
-                <h1>Computing the boundary complex using Macaulay2</h1>
-                <p>2023-05-08</p>
-                <br>
-                <p>
+    <div class="header">
+        <nav>
+            <a href="../index.html">Home</a>
+        </nav>
+    </div>
+    <main>
+        <section>
+            <h1>Computing the boundary complex using Macaulay2</h1>
+            <p>2023-05-08</p>
+            <br>
+            <p>
 
-                </p>
-                <p>
-                    Suppose you are given a divisor $D$ on a variety $X$, with $D=\cup_{i=0}^N D_i$ the decomposition
-                    into its irreducible components. Suppose moreover that the divisor is <i>simple normal crossing</i>, or even <i>combinatorial normal crossing</i> in the sense that all non-empty intersections $D_{i_1}\cap ... \cap D_{i_k}$ have codimension $k$. One can form the <i>boundary complex $\Delta(D)$ </i> of $D$, a
-                    simplicial complex on the set $\{0,...,N\}$ recording the intersection properties of the $D_i$. We
-                    proceed as follows:
-                <ol>
-                    <li>
-                        For each $D_i$, add a vertex $[i]$ to the complex $\Delta (D)$.
-                    </li>
-                    <li>
-                        For each <b>non-empty</b> intersection $D_{i_1} \cap ... \cap D_{i_k}$, add a k-simplex
-                        $[i_1,..,i_k]$ between the vertices $[i_1]$, $[i_2]$,... through to $[i_k]$.
-                    </li>
-                </ol>
-                From this boundary complex, interesting information about the divisor $D$ and its complement $U:=
-                X\setminus D$ can be deduced.
-                </p>
-                <p>
-                    When working in the projective plane $\mathbb{P}^2$, we might have a divisor $D$ given as the union
-                    of curves $D_0,...,D_N$, each given by a corresponding irreducible polynomials $f_i$. Suppose we are
-                    given this list of polynomials $f_0,...,f_N.$
-                </p>
-                <p>
-                    Here is some <code>Macaulay2</code> code that will compute the boundary complex in this case:
-                <pre><code>
+            </p>
+            <p>
+                Suppose you are given a divisor $D$ on a variety $X$, with $D=\cup_{i=0}^N D_i$ the decomposition
+                into its irreducible components. Suppose moreover that the divisor is <i>simple normal crossing</i>, or even <i>combinatorial normal crossing</i> in the sense that all non-empty intersections $D_{i_1}\cap ... \cap D_{i_k}$ have codimension $k$. One can form the <i>boundary complex $\Delta(D)$ </i> of $D$, a
+                simplicial complex on the set $\{0,...,N\}$ recording the intersection properties of the $D_i$. We
+                proceed as follows:
+            <ol>
+                <li>
+                    For each $D_i$, add a vertex $[i]$ to the complex $\Delta (D)$.
+                </li>
+                <li>
+                    For each <b>non-empty</b> intersection $D_{i_1} \cap ... \cap D_{i_k}$, add a k-simplex
+                    $[i_1,..,i_k]$ between the vertices $[i_1]$, $[i_2]$,... through to $[i_k]$.
+                </li>
+            </ol>
+            From this boundary complex, interesting information about the divisor $D$ and its complement $U:=
+            X\setminus D$ can be deduced.
+            </p>
+            <p>
+                When working in the projective plane $\mathbb{P}^2$, we might have a divisor $D$ given as the union
+                of curves $D_0,...,D_N$, each given by a corresponding irreducible polynomials $f_i$. Suppose we are
+                given this list of polynomials $f_0,...,f_N.$
+            </p>
+            <p>
+                Here is some <code>Macaulay2</code> code that will compute the boundary complex in this case:
+            <pre><code>
 boundaryComplex = method()
 boundaryComplex := listOfDivisors -> (
-    -- Helper function, takes list of polynomials and determines 
-    -- if their intersection is irrelevant ideal
-    intersectionIsIrrelevantIdeal = s -> (
-        radical(ideal(s)) != ideal(y_0,y_1,y_2)
-        );
-        -- Select all possible subsets of divisors
-        rawPolySubs = subsets(listOfDivisors);
-        polySubs = rawPolySubs_{1..(#rawPolySubs-1)};
-        -- Create a true/false mask for when this intersection is the irrelevant 
-        -- ideal and hence those divisors do not intersect in projective space
-        mask = apply(polySubs,intersectionIsIrrelevantIdeal);
-        -- List all faces
-        R=QQ[x_0..x_(#listOfDivisors-1)];
-        -- take subsets of numbers 0 through length(listOfDivisors), then 
-        -- drop the first as it is always the empty set
-        faceNums = drop(subsets(toList(0..(#listOfDivisors-1))),1); 
-        faceSubs = drop(subsets(toList(x_0..x_(#listOfDivisors-1))),1);
-        -- Filter by the mask
-        faceMonomials = {};
-        faceList = {};
-        for i in 0..(#faceSubs-1) do (
-            if mask#i then (
-                faceMonomials=append(faceMonomials,fold((i,j)->i*j, faceSubs#i));
-                faceList=append(faceList,faceNums#i);
-            )
-        );
-    (simplicialComplex(faceMonomials),faceList)
+-- Helper function, takes list of polynomials and determines 
+-- if their intersection is irrelevant ideal
+intersectionIsIrrelevantIdeal = s -> (
+    radical(ideal(s)) != ideal(y_0,y_1,y_2)
+    );
+    -- Select all possible subsets of divisors
+    rawPolySubs = subsets(listOfDivisors);
+    polySubs = rawPolySubs_{1..(#rawPolySubs-1)};
+    -- Create a true/false mask for when this intersection is the irrelevant 
+    -- ideal and hence those divisors do not intersect in projective space
+    mask = apply(polySubs,intersectionIsIrrelevantIdeal);
+    -- List all faces
+    R=QQ[x_0..x_(#listOfDivisors-1)];
+    -- take subsets of numbers 0 through length(listOfDivisors), then 
+    -- drop the first as it is always the empty set
+    faceNums = drop(subsets(toList(0..(#listOfDivisors-1))),1); 
+    faceSubs = drop(subsets(toList(x_0..x_(#listOfDivisors-1))),1);
+    -- Filter by the mask
+    faceMonomials = {};
+    faceList = {};
+    for i in 0..(#faceSubs-1) do (
+        if mask#i then (
+            faceMonomials=append(faceMonomials,fold((i,j)->i*j, faceSubs#i));
+            faceList=append(faceList,faceNums#i);
+        )
+    );
+(simplicialComplex(faceMonomials),faceList)
 )
-    </code>
+</code>
 </pre>
-                <p>
-                    The function outputs two objects:
-                <ol>
-                    <li>First, a <code>SimplicialComplex</code> object, which is exactly $\Delta(D)$, and can be easily
-                        visualized (see below).</li>
-                    <li>Second, a list of the faces of this simplicial complex as subsets of the integers $0,..,N$,
-                        which can be useful for a quick inspection and building the simplicial complex in some other
-                        program, such as <code>Polymake</code></li>
-                </ol>
-                It should be a straightforward matter to generalize this to divisors on other varieties, say in the
-                toric setting, by changing the irrelevant ideal $(y_0,y_1,y_2)$ on line 6 to another ideal.
-                </p>
-                <p>
-                    An example run of this code is given as follows:
-                <pre><code>
+            <p>
+                The function outputs two objects:
+            <ol>
+                <li>First, a <code>SimplicialComplex</code> object, which is exactly $\Delta(D)$, and can be easily
+                    visualized (see below).</li>
+                <li>Second, a list of the faces of this simplicial complex as subsets of the integers $0,..,N$,
+                    which can be useful for a quick inspection and building the simplicial complex in some other
+                    program, such as <code>Polymake</code></li>
+            </ol>
+            It should be a straightforward matter to generalize this to divisors on other varieties, say in the
+            toric setting, by changing the irrelevant ideal $(y_0,y_1,y_2)$ on line 6 to another ideal.
+            </p>
+            <p>
+                An example run of this code is given as follows:
+            <pre><code>
 S = QQ[y_0..y_2]
 l0 = y_0
 l1 = 2*y_1-y_2+y_0
@@ -116,12 +116,12 @@ listOfDivisors = {l0,l1,l2,c1,c2}
 
 (bc, lf) = boundaryComplex(listOfDivisors)
 </code></pre>
-                </p>
-                <p>
-                    Moreover, using the <code>Visualize</code> package, we can quite easily visualize two-dimensional
-                    simplicial complexes (three-dimensional are per now not supported). In the above example this would
-                    proceed as follows:
-                <pre><code>
+            </p>
+            <p>
+                Moreover, using the <code>Visualize</code> package, we can quite easily visualize two-dimensional
+                simplicial complexes (three-dimensional are per now not supported). In the above example this would
+                proceed as follows:
+            <pre><code>
 loadPackage "Visualize"
 openPort("8090")
 
@@ -129,44 +129,43 @@ visualize bc
 
 closePort()
 </code></pre>
-                (Remember to close the port after you are done, if you forget, you might need to use
-                <code>lsof -i tcp:8090</code> and <code>kill</code> the process holding onto the port).
-                </p>
-                <p>This should give you a nice interactive browser animation, looking similar to the following image:
-                    <img src="boundary_cx/dual_complex.png" alt="Image of the dual complex" style="display: block; margin-left: auto;margin-right: auto; width: 50%;">
-                </p>
-                <p>For three-dimensional simplicial complexes, the following code will transform the list <code>lf</code> into a string which can be pasted in <code>polymake</code> to create the corresponding <code>polymake</code> simplicial object:
+            (Remember to close the port after you are done, if you forget, you might need to use
+            <code>lsof -i tcp:8090</code> and <code>kill</code> the process holding onto the port).
+            </p>
+            <p>This should give you a nice interactive browser animation, looking similar to the following image:
+                <img src="boundary_cx/dual_complex.png" alt="Image of the dual complex" style="display: block; margin-left: auto;margin-right: auto; width: 50%;">
+            </p>
+            <p>For three-dimensional simplicial complexes, the following code will transform the list <code>lf</code> into a string which can be pasted in <code>polymake</code> to create the corresponding <code>polymake</code> simplicial object:
 <pre><code>
 facesToPolymakeSimplicialComplex = method()
 facesToPolymakeSimplicialComplex := lst -> (
-    listStr = toString(lst);
-    listStr = replace("{","[",listStr);
-    listStr = replace("}","]",listStr);
-    out = concatenate({"$s = new SimplicialComplex(INPUT_FACES=>",  listStr, ");"});
-    out
+listStr = toString(lst);
+listStr = replace("{","[",listStr);
+listStr = replace("}","]",listStr);
+out = concatenate({"$s = new SimplicialComplex(INPUT_FACES=>",  listStr, ");"});
+out
 )
 
 facesToPolymakeSimplicialComplex(lf)
 </code></pre>
 <p>This can then be visualized using the command <code>$s->VISUAL;</code></p>
-                </p>
-            </div>
-            <div class="section">
-                <b>Bibliography:</b>
-                <ul>
-                    <li>
-                        Grayson, Daniel R. and Stillman, Michael E., <b>Macaulay2, a software system for research in
-                            algebraic geometry</b>, <a
-                            href="http://www.math.uiuc.edu/Macaulay2/">http://www.math.uiuc.edu/Macaulay2/</a>
-                    </li>
-                    <li>
-                        Ewgenij Gawrilow and Michael Joswig,  <b>polymake: a framework for analyzing convex polytopes</b>, <a href="https://polymake.org/doku.php/start">https://polymake.org/doku.php/start</a>
-                    </li>
-                </ul>
+            </p>
+        </section>
+        <section>
+            <b>Bibliography:</b>
+            <ul>
+                <li>
+                    Grayson, Daniel R. and Stillman, Michael E., <b>Macaulay2, a software system for research in
+                        algebraic geometry</b>, <a
+                        href="http://www.math.uiuc.edu/Macaulay2/">http://www.math.uiuc.edu/Macaulay2/</a>
+                </li>
+                <li>
+                    Ewgenij Gawrilow and Michael Joswig,  <b>polymake: a framework for analyzing convex polytopes</b>, <a href="https://polymake.org/doku.php/start">https://polymake.org/doku.php/start</a>
+                </li>
+            </ul>
 
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 
 </html>
