@@ -1,4 +1,4 @@
-from main import CommentToken, ParagraphToken, Range, comment_ranges, lex
+from main import CommentToken, HeaderBlock, ParagraphToken, Range, comment_ranges, parse_paragraphs, scan_header
 import pytest
 
 COMMENT_CASES = [
@@ -30,4 +30,19 @@ def test_lexing_comments(incoming, expected):
     ("hey ho\n\nhaha\nok", [ParagraphToken(range=Range(0,5),text="hey ho"),ParagraphToken(range=Range(8,14),text="haha\nok")]),
 ])
 def test_lexing_paragraph(incoming, expected):
-    assert lex(incoming) == expected
+    assert parse_paragraphs(incoming) == expected
+
+
+
+@pytest.mark.parametrize("incoming, expected", [
+    ("#hey", HeaderBlock(level=1, content="hey")),
+    ("# hey", HeaderBlock(level=1, content="hey")),
+    ("## hey", HeaderBlock(level=2, content="hey")),
+    ("##hey", HeaderBlock(level=2, content="hey")),
+    ("### hey", HeaderBlock(level=3, content="hey")),
+    ("#### hey", HeaderBlock(level=4, content="hey")),
+    ("##### hey", HeaderBlock(level=5, content="hey")),
+    ("###### hey", HeaderBlock(level=6, content="hey")),
+])
+def test_header_scanning(incoming, expected):
+    assert scan_header(incoming) == expected

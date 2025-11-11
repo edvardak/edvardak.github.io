@@ -25,7 +25,50 @@ class TitleToken:
     text: str
 
 
-def lex(raw_input: str):
+@dataclass(frozen=True)
+class HeaderBlock:
+    level: int
+    content: str
+
+@dataclass(frozen=True)
+class QuoteBlock:
+    content: str
+
+@dataclass(frozen=True)
+class CodeBlock:
+    content: str
+
+@dataclass(frozen=True)
+class TextBlock:
+    content: str
+
+class BlankLine: ...
+
+MAX_HEADER_SIZE = 6
+def scan_header(line: str) -> HeaderBlock:
+    level = 0
+    while line[level] == r'#' and level < MAX_HEADER_SIZE:
+        level+=1
+    return HeaderBlock(level=level,content=line[level:].strip())
+
+
+def scan_code(): ...
+
+def scan(raw: str):
+    lines = map(lambda l: l.strip(), raw.splitlines())
+
+    blocks = []
+
+    for line in lines:
+        if len(line)==0: blocks.append(BlankLine())
+        match line[0]:
+            case '>': blocks.append(QuoteBlock(content=line))
+            case r'#': blocks.append(scan_header(line))
+            case '`': blocks.append(scan_code())
+            case _: blocks.append(TextBlock(content=line))
+
+
+def parse_paragraphs(raw_input: str):
     pos = 0
     tokens = []
 
