@@ -1,4 +1,4 @@
-from main import CommentToken, HeaderBlock, ParagraphToken, Range, comment_ranges, parse_paragraphs, scan_header
+from main import CommentToken, HeaderBlock, ParagraphToken, Range, comment_ranges,  scan, scan_header, TextBlock, CodeBlock, BlankLine
 import pytest
 
 COMMENT_CASES = [
@@ -20,21 +20,6 @@ def test_lexing_comments(incoming, expected):
 
 
 @pytest.mark.parametrize("incoming, expected", [
-    ("",[]),
-    ("hey", [ParagraphToken(range=Range(0,2),text="hey")]),
-    ("hey ho", [ParagraphToken(range=Range(0,5),text="hey ho")]),
-    ("hey ho\n", [ParagraphToken(range=Range(0,6),text="hey ho")]),
-    ("hey ho\nha", [ParagraphToken(range=Range(0,8),text="hey ho\nha")]),
-    ("hey ho\n\n", [ParagraphToken(range=Range(0,5),text="hey ho")]),
-    ("hey ho\n\nhaha", [ParagraphToken(range=Range(0,5),text="hey ho"),ParagraphToken(range=Range(8,11),text="haha")]),
-    ("hey ho\n\nhaha\nok", [ParagraphToken(range=Range(0,5),text="hey ho"),ParagraphToken(range=Range(8,14),text="haha\nok")]),
-])
-def test_lexing_paragraph(incoming, expected):
-    assert parse_paragraphs(incoming) == expected
-
-
-
-@pytest.mark.parametrize("incoming, expected", [
     ("#hey", HeaderBlock(level=1, content="hey")),
     ("# hey", HeaderBlock(level=1, content="hey")),
     ("## hey", HeaderBlock(level=2, content="hey")),
@@ -46,3 +31,13 @@ def test_lexing_paragraph(incoming, expected):
 ])
 def test_header_scanning(incoming, expected):
     assert scan_header(incoming) == expected
+
+
+
+@pytest.mark.parametrize("incoming, expected", [
+    ("## hey\n sup \n dude \n``` lalala ``` \n ok\n`no danger here`\n###3",[HeaderBlock(level=2, content='hey'), TextBlock(content='sup'), TextBlock(content='dude'), CodeBlock(content='lalala'),  TextBlock(content='ok'), TextBlock(content='`no danger here`'), HeaderBlock(level=3, content='3')]),
+    ("## hey\n sup \n dude \n``` lalala",[HeaderBlock(level=2, content='hey'), TextBlock(content='sup'), TextBlock(content='dude'), CodeBlock(content='lalala')]),
+    ("ha\nho\n\nhi",[TextBlock(content='ha'), TextBlock(content='ho'), BlankLine(), TextBlock(content='hi')]),
+])
+def test_scan(incoming, expected):
+    assert scan(incoming) == expected

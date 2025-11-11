@@ -42,6 +42,7 @@ class CodeBlock:
 class TextBlock:
     content: str
 
+@dataclass(frozen=True)
 class BlankLine: ...
 
 MAX_HEADER_SIZE = 6
@@ -51,40 +52,48 @@ def scan_header(line: str) -> HeaderBlock:
         level+=1
     return HeaderBlock(level=level,content=line[level:].strip())
 
+def extract_until(pos: int, raw: str, until: str = "\n")-> tuple[int, str]:
+    next_newline = raw.find(until,pos)
+    if next_newline == -1:
+        new_pos = len(raw)
+        content = raw[pos:]
+    else:
+        new_pos = next_newline+len(until)
+        content = raw[pos:next_newline]
 
-def scan_code(): ...
-
+    return new_pos, content.strip()
+    
 def scan(raw: str):
-    lines = map(lambda l: l.strip(), raw.splitlines())
+    pos = 0
 
     blocks = []
 
-    for line in lines:
-        if len(line)==0: blocks.append(BlankLine())
-        match line[0]:
-            case '>': blocks.append(QuoteBlock(content=line))
-            case r'#': blocks.append(scan_header(line))
-            case '`': blocks.append(scan_code())
-            case _: blocks.append(TextBlock(content=line))
+    while pos < len(raw):
+        match raw[pos]:
+            case '>': 
+                pos, content = extract_until(pos, raw)
+                blocks.append(QuoteBlock(content=content))
+            case r'#': 
+                pos, content = extract_until(pos, raw)
+                blocks.append(scan_header(content))
+            case '`': 
+                # either a code block or just the start of inline block
+                if raw[pos:pos+3]=="```":
+                    pos, content = extract_until(pos+3, raw, "```")
+                    blocks.append(CodeBlock(content))
+                    # remove text after code block end
+                    pos, _ = extract_until(pos, raw)
+                else:
+                    pos, content = extract_until(pos,raw)
+                    blocks.append(TextBlock(content=content))
+            case _: 
+                pos, content = extract_until(pos,raw)
+                if len(content) != 0:
+                    blocks.append(TextBlock(content=content))
+                else:
+                    blocks.append(BlankLine())
 
-
-def parse_paragraphs(raw_input: str):
-    pos = 0
-    tokens = []
-
-    while pos < len(raw_input):
-        paragraph_end = raw_input.find("\n\n", pos)
-        if paragraph_end == -1:
-            paragraph_end = len(raw_input)
-
-        text = raw_input[pos:paragraph_end].strip()
-        range = Range(pos,paragraph_end-1)
-
-        tokens.append(ParagraphToken(range=range,text=text))
-
-        pos = paragraph_end+2
-
-    return tokens
+    return blocks
 
 def comment_ranges(raw_input: str):
     comment_ranges = []
