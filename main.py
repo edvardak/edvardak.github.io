@@ -1,8 +1,5 @@
 from dataclasses import dataclass
 
-COMMENT_START = "<!--"
-COMMENT_END = "-->"
-
 @dataclass(frozen=True)
 class Range:
     start: int
@@ -12,18 +9,6 @@ class Range:
 class CommentToken:
     range: Range
     text: str
-
-@dataclass(frozen=True)
-class ParagraphToken:
-    range: Range
-    text: str
-
-@dataclass(frozen=True)
-class TitleToken:
-    range: Range
-    level: int
-    text: str
-
 
 @dataclass(frozen=True)
 class HeaderBlock:
@@ -45,6 +30,9 @@ class TextBlock:
 @dataclass(frozen=True)
 class BlankLine: ...
 
+
+Block = HeaderBlock | QuoteBlock | CodeBlock | TextBlock | BlankLine
+
 MAX_HEADER_SIZE = 6
 def scan_header(line: str) -> HeaderBlock:
     level = 0
@@ -62,14 +50,15 @@ def extract_until(pos: int, raw: str, until: str = "\n")-> tuple[int, str]:
         content = raw[pos:next_newline]
 
     return new_pos, content.strip()
-    
-def scan(raw: str):
+
+def scan_blocks(raw: str) -> list[Block]:
     pos = 0
 
-    blocks = []
+    blocks: list[Block] = []
 
     while pos < len(raw):
-        match raw[pos]:
+        c = raw[pos]
+        match c:
             case '>': 
                 pos, content = extract_until(pos, raw)
                 blocks.append(QuoteBlock(content=content))
@@ -86,6 +75,13 @@ def scan(raw: str):
                 else:
                     pos, content = extract_until(pos,raw)
                     blocks.append(TextBlock(content=content))
+
+            case "*" | "-" | "+":
+                # Unordered lists
+                pass
+            case c if c.isdigit():
+                # Ordered list
+                pass
             case _: 
                 pos, content = extract_until(pos,raw)
                 if len(content) != 0:
@@ -95,7 +91,11 @@ def scan(raw: str):
 
     return blocks
 
+
+
 def comment_ranges(raw_input: str):
+    COMMENT_START = "<!--"
+    COMMENT_END = "-->"
     comment_ranges = []
     pos = 0
 
@@ -114,8 +114,6 @@ def comment_ranges(raw_input: str):
         new_range = Range(start=next_start, end=next_end+len(COMMENT_END)-1)
         text = raw_input[new_range.start+4:new_range.end-2].strip()
         comment=CommentToken(range=new_range,text=text)
-
-
 
         comment_ranges.append(comment)
 

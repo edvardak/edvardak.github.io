@@ -1,4 +1,4 @@
-from main import CommentToken, HeaderBlock, ParagraphToken, Range, comment_ranges,  scan, scan_header, TextBlock, CodeBlock, BlankLine
+from main import CommentToken, HeaderBlock, Range, comment_ranges,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine
 import pytest
 
 COMMENT_CASES = [
@@ -40,4 +40,4 @@ def test_header_scanning(incoming, expected):
     ("ha\nho\n\nhi",[TextBlock(content='ha'), TextBlock(content='ho'), BlankLine(), TextBlock(content='hi')]),
 ])
 def test_scan(incoming, expected):
-    assert scan(incoming) == expected
+    assert scan_blocks(incoming) == expected
