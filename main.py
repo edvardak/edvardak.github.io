@@ -24,6 +24,14 @@ class CodeBlock:
     content: str
 
 @dataclass(frozen=True)
+class UnorderedListBlock:
+    content: str
+
+@dataclass(frozen=True)
+class OrderedListBlock:
+    content: str
+
+@dataclass(frozen=True)
 class TextBlock:
     content: str
 
@@ -75,13 +83,15 @@ def scan_blocks(raw: str) -> list[Block]:
                 else:
                     pos, content = extract_until(pos,raw)
                     blocks.append(TextBlock(content=content))
-
             case "*" | "-" | "+":
-                # Unordered lists
-                pass
+                pos+=1 # skip space
+                pos, content = extract_until(pos, raw)
+                blocks.append(UnorderedListBlock(content=content))
             case c if c.isdigit():
-                # Ordered list
-                pass
+                # if line starts with a digit, its an ordered list
+                pos, _ = extract_until(pos, raw, ".")
+                pos, content = extract_until(pos, raw)
+                blocks.append(OrderedListBlock(content=content))
             case _: 
                 pos, content = extract_until(pos,raw)
                 if len(content) != 0:
