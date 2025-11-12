@@ -1,2 +1,2 @@
 test:
-	uv run pytest main.py
+	uv run pytest .
