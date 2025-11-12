@@ -59,6 +59,13 @@ def extract_until(pos: int, raw: str, until: str = "\n")-> tuple[int, str]:
 
     return new_pos, content.strip()
 
+def is_list_number(pos: int, raw: str) -> bool:
+    end = raw.find(".", pos)
+    if end == -1: return False
+
+    return raw[pos:end].isdigit()
+
+
 def scan_blocks(raw: str) -> list[Block]:
     pos = 0
 
@@ -87,7 +94,7 @@ def scan_blocks(raw: str) -> list[Block]:
                 pos+=1 # skip space
                 pos, content = extract_until(pos, raw)
                 blocks.append(UnorderedListBlock(content=content))
-            case c if c.isdigit():
+            case c if c.isdigit() and is_list_number(pos, raw):
                 # if line starts with a digit, its an ordered list
                 pos, _ = extract_until(pos, raw, ".")
                 pos, content = extract_until(pos, raw)

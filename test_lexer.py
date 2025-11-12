@@ -1,4 +1,4 @@
-from main import CommentToken, HeaderBlock, Range, comment_ranges,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine, UnorderedListBlock, OrderedListBlock
+from main import CommentToken, HeaderBlock, Range, comment_ranges, is_list_number,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine, UnorderedListBlock, OrderedListBlock
 import pytest
 
 COMMENT_CASES = [
@@ -17,6 +17,16 @@ COMMENT_CASES = [
 @pytest.mark.parametrize("incoming, expected", COMMENT_CASES)
 def test_lexing_comments(incoming, expected):
     assert comment_ranges(incoming) == expected
+
+@pytest.mark.parametrize("pos, raw, expected", [
+    (0, "1", False),
+    (0, "1.", True),
+    (1, " 1.", True),
+    (1, " 10.", True),
+    (1, " 10 .", False),
+])
+def test_list_number(pos, raw, expected):
+    assert is_list_number(pos, raw) == expected
 
 
 @pytest.mark.parametrize("incoming, expected", [
@@ -39,6 +49,7 @@ def test_header_scanning(incoming, expected):
     ("## hey\n sup \n dude \n``` lalala",[HeaderBlock(level=2, content='hey'), TextBlock(content='sup'), TextBlock(content='dude'), CodeBlock(content='lalala')]),
     ("ha\nho\n\nhi",[TextBlock(content='ha'), TextBlock(content='ho'), BlankLine(), TextBlock(content='hi')]),
     ("## hey\n sup \n dude \n```ok```\n- my\n- unordered \n-list\n1.lol\n2. ok",[HeaderBlock(level=2, content='hey'), TextBlock(content='sup'), TextBlock(content='dude'), CodeBlock(content='ok'), UnorderedListBlock(content='my'), UnorderedListBlock(content='unordered'), UnorderedListBlock(content='list'), OrderedListBlock(content='lol'), OrderedListBlock(content='ok')]),
+    ("ha\n1 list",[TextBlock(content='ha'), TextBlock(content='1 list')]),
 ])
 def test_scan(incoming, expected):
     assert scan_blocks(incoming) == expected
