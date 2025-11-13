@@ -81,7 +81,7 @@ def scan_blocks(raw: str) -> list[Block]:
                 pos, content = extract_until(pos, raw)
                 blocks.append(scan_header(content))
             case '`': 
-                # either a code block or just the start of inline block
+                # either a code block or just the start of inline code block
                 if raw[pos:pos+3]=="```":
                     pos, content = extract_until(pos+3, raw, "```")
                     blocks.append(CodeBlock(content))
@@ -108,7 +108,11 @@ def scan_blocks(raw: str) -> list[Block]:
 
     return blocks
 
+def scan_inline(block: Block)-> Block:
+    # only do links for now
 
+
+    return BlankLine()
 
 def comment_ranges(raw_input: str):
     COMMENT_START = "<!--"
