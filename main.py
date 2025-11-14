@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from re import findall, match
 
 @dataclass(frozen=True)
 class Range:
@@ -10,28 +11,28 @@ class CommentToken:
     range: Range
     text: str
 
-@dataclass(frozen=True)
+@dataclass
 class HeaderBlock:
     level: int
     content: str
 
-@dataclass(frozen=True)
+@dataclass
 class QuoteBlock:
     content: str
 
-@dataclass(frozen=True)
+@dataclass
 class CodeBlock:
     content: str
 
-@dataclass(frozen=True)
+@dataclass
 class UnorderedListBlock:
     content: str
 
-@dataclass(frozen=True)
+@dataclass
 class OrderedListBlock:
     content: str
 
-@dataclass(frozen=True)
+@dataclass
 class TextBlock:
     content: str
 
@@ -64,7 +65,6 @@ def is_list_number(pos: int, raw: str) -> bool:
     if end == -1: return False
 
     return raw[pos:end].isdigit()
-
 
 def scan_blocks(raw: str) -> list[Block]:
     pos = 0
@@ -108,11 +108,18 @@ def scan_blocks(raw: str) -> list[Block]:
 
     return blocks
 
-def scan_inline(block: Block)-> Block:
-    # only do links for now
+def scan_inline(block: Block) -> Block:
+    if isinstance(block, BlankLine):
+        return BlankLine()
 
+    matches = findall(r"\[(.*)\]\((.*)\)", block.content)
 
-    return BlankLine()
+    for match in matches:
+        text, href = match.group(0), match.group(1)
+        block.content = block.content.replace(f"[{text}]({href})", f"<a href={href}>{text}</a>")
+
+    return block
+
 
 def comment_ranges(raw_input: str):
     COMMENT_START = "<!--"
