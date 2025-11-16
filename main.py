@@ -108,15 +108,22 @@ def scan_blocks(raw: str) -> list[Block]:
 
     return blocks
 
+def link_transform(base: str) -> str:
+
+    link_matches = findall(r"\[(.*)\]\((.*)\)", base)
+
+    for match in link_matches:
+        text, href = match[0], match[1]
+        base = base.replace(f"[{text}]({href})", f"<a href=\"{href}\">{text}</a>")
+
+    return base
+
+
 def scan_inline(block: Block) -> Block:
     if isinstance(block, BlankLine):
         return BlankLine()
 
-    matches = findall(r"\[(.*)\]\((.*)\)", block.content)
-
-    for match in matches:
-        text, href = match.group(0), match.group(1)
-        block.content = block.content.replace(f"[{text}]({href})", f"<a href={href}>{text}</a>")
+    block.content = link_transform(block.content)
 
     return block
 

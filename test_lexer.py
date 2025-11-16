@@ -1,4 +1,4 @@
-from main import CommentToken, HeaderBlock, Range, comment_ranges, is_list_number,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine, UnorderedListBlock, OrderedListBlock
+from main import CommentToken, HeaderBlock, Range, comment_ranges, is_list_number, link_transform,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine, UnorderedListBlock, OrderedListBlock
 import pytest
 
 COMMENT_CASES = [
@@ -53,3 +53,13 @@ def test_header_scanning(incoming, expected):
 ])
 def test_scan(incoming, expected):
     assert scan_blocks(incoming) == expected
+
+
+
+@pytest.mark.parametrize("incoming, expected", [
+    ("",""),
+    ("[a](b)","<a href=\"b\">a</a>"),
+    ("[Google is useful](https://google.com)","<a href=\"https://google.com\">Google is useful</a>"),
+])
+def test_link_transform(incoming, expected):
+    assert link_transform(incoming) == expected
