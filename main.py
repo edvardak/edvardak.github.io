@@ -110,7 +110,7 @@ def scan_blocks(raw: str) -> list[Block]:
 
 def link_transform(base: str) -> str:
 
-    link_matches = findall(r"\[(.*)\]\((.*)\)", base)
+    link_matches = findall(r"(?<!!)\[(.*)\]\((.*)\)", base)
 
     for match in link_matches:
         text, href = match[0], match[1]

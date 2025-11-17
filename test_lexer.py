@@ -60,6 +60,7 @@ def test_scan(incoming, expected):
     ("",""),
     ("[a](b)","<a href=\"b\">a</a>"),
     ("[Google is useful](https://google.com)","<a href=\"https://google.com\">Google is useful</a>"),
+    ("![this is an image](an_image)","![this is an image](an_image)"),
 ])
 def test_link_transform(incoming, expected):
     assert link_transform(incoming) == expected
