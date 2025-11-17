@@ -118,6 +118,15 @@ def link_transform(base: str) -> str:
 
     return base
 
+def image_transform(base: str) -> str:
+
+    image_matches = findall(r"!\[(.*)\]\((\S+)\W?\"(.*)\"\)", base)
+
+    for match in image_matches:
+        alt, src, title = match[0], match[1], match[3]
+        base = base.replace(f"![{alt}]({src} \"{title}\")", f"<img src=\"{src}\" alt=\"{alt}\" title=\"{title}\"/>")
+
+    return base
 
 def scan_inline(block: Block) -> Block:
     if isinstance(block, BlankLine):
