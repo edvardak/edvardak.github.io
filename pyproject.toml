@@ -1,7 +1,7 @@
 [project]
-name = "edvardak-github-io"
+name = "sitegen"
 version = "0.1.0"
-description = "Add your description here"
+description = "Simple static site generation used for my personal site"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []
@@ -13,6 +13,13 @@ dev = [
     "pytest-cov>=7.0.0",
 ]
 
+[project.scripts]
+sitegen = "sitegen.__main__:main"
+
+[tool.uv]
+package = true
+
 [tool.pytest.ini_options]
-testpaths = ["."]
+pythonpath = "src"
 addopts = "--cov --cov-report term-missing"
+

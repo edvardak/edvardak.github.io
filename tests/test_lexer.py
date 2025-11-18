@@ -1,4 +1,4 @@
-from main import CommentToken, HeaderBlock, Range, comment_ranges, is_list_number, link_transform,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine, UnorderedListBlock, OrderedListBlock
+from sitegen import CommentToken, HeaderBlock, Range, comment_ranges, is_list_number, link_transform,  scan_blocks, scan_header, TextBlock, CodeBlock, BlankLine, UnorderedListBlock, OrderedListBlock
 import pytest
 
 COMMENT_CASES = [

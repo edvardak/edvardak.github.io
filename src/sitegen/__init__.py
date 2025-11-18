@@ -1,5 +1,7 @@
 from dataclasses import dataclass
-from re import findall, match
+from argparse import ArgumentParser
+from pathlib import Path
+from re import findall
 
 @dataclass(frozen=True)
 class Range:
@@ -165,7 +167,42 @@ def comment_ranges(raw_input: str):
 
     return comment_ranges
 
-with open("./templates/preamble.html") as f:
-    preamble = f.read()
+@dataclass
+class Config:
+    input_file: Path
+    output_folder: Path
+    preamble: Path
 
 
+def get_config() -> Config:
+
+    parser = ArgumentParser(
+        prog="Site generator", 
+        description="Simple tool to generate html from markdown,\
+            adapted to my personal website"
+    )
+
+    parser.add_argument("file", help="input markdown file to convert", 
+                        type=str)
+    parser.add_argument("-o", "--output", 
+                        help="output folder to put the converted files in",
+                        default="build")
+    parser.add_argument("-p", "--preamble", 
+                        help="path to preamble file, included in head",
+                        default="templates/preamble.html")
+
+    cwd = Path.cwd()
+    args = parser.parse_args()
+    input_file = (cwd / args.file).resolve()
+    output_folder = (cwd / args.output).resolve()
+    preamble = (cwd / args.preamble).resolve()
+
+    if not cwd in input_file.parents:
+        print(f"file not in subfolder: file={args.file}")
+        exit(1)
+
+    if not cwd in output_folder.parents:
+        print(f"output folder not in subfolder: file={args.output}")
+        exit(1)
+
+    return Config(input_file, output_folder, preamble)
