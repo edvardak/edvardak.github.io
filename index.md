@@ -24,18 +24,9 @@ title: Edvard Aksnes
 
 ### Education
 
-Doctoral Research Fellow in Mathematics, Tropical Geometry, University of Oslo, 2020-2024
-
-- <a href="./thesis_slides/disputation.pdf">Disputation presentation</a> 
-- <a href="./thesis_slides/trial-lecture.pdf">Trial Lecture presentation</a>
-
-MSc. in Mathematics, Algebra and Geometry, University of Oslo, 2017-2019,
-
-- <a href="https://www.duo.uio.no/bitstream/handle/10852/69428/Master_Edvard_Aksnes_web.pdf?sequence=1&isAllowed=y">Thesis</a>
-
-
-
-BSc. in Mathematics, Informatics and Technology, University of Oslo, 2015-2017
+- Doctoral Research Fellow in Mathematics, Tropical Geometry, University of Oslo, 2020-2024, <a href="/slides/thesis/disputation.pdf">Disputation presentation</a>, <a href="/slides/thesis/trial-lecture.pdf">Trial Lecture presentation</a>
+- MSc. in Mathematics, Algebra and Geometry, University of Oslo, 2017-2019, <a href="https://www.duo.uio.no/bitstream/handle/10852/69428/Master_Edvard_Aksnes_web.pdf?sequence=1&isAllowed=y">Thesis</a>
+- BSc. in Mathematics, Informatics and Technology, University of Oslo, 2015-2017
 
 ## Research
 
@@ -47,30 +38,31 @@ BSc. in Mathematics, Informatics and Technology, University of Oslo, 2015-2017
 
 ## Talks
 
-- <a href="/personal_slides/Exceptions_aren_t_cool.pdf">Exceptions aren't cool</a>, Tech Toks, PwC Norway, 2025-10-15
+- <a href="/slides/personal/Exceptions_aren_t_cool.pdf">Exceptions aren't cool</a>, Tech Toks, PwC Norway, 2025-10-15
 - <a href="http://www.fields.utoronto.ca/talks/Tropical-Poincar%C3%A9-duality-spaces">Tropical Poincaré duality spaces</a>, The Fields Institute Matroid seminar, 2023-03-02
 - "What is cohomology?", Young People Seminar UiO, 2022-06-07
-- <a href="/personal_slides/gss_lss.pdf">The Grothendieck and Leray spectral sequences</a>, Student seminar, 2022-05-20
-- <a href="/personal_slides/Hodge_decomposition.pdf">The Hodge Decomposition</a>, Student seminar, 2022-03-25
-- <a href="/personal_slides/tpd_spaces.pdf">Tropical Poincaré duality spaces</a>, <a href="https://sites.google.com/site/cotterillethan/ethan-cotterill-eng/latin-american-real-and-tropical-geometry-seminar">LAGARTOS</a>, 2022-03-25
-- <a href="/personal_slides/Fundamental_groups_in_real_and_complex_algebraic_geometry.pdf">Fundamental groups in real and complex algebraic geometry</a>, Student seminar, University of Oslo, 2021-01-28
+- <a href="/slides/personal/gss_lss.pdf">The Grothendieck and Leray spectral sequences</a>, Student seminar, 2022-05-20
+- <a href="/slides/personal/Hodge_decomposition.pdf">The Hodge Decomposition</a>, Student seminar, 2022-03-25
+- <a href="/slides/personal/tpd_spaces.pdf">Tropical Poincaré duality spaces</a>, <a href="https://sites.google.com/site/cotterillethan/ethan-cotterill-eng/latin-american-real-and-tropical-geometry-seminar">LAGARTOS</a>, 2022-03-25
+- <a href="/slides/personal/Fundamental_groups_in_real_and_complex_algebraic_geometry.pdf">Fundamental groups in real and complex algebraic geometry</a>, Student seminar, University of Oslo, 2021-01-28
 
 ## Events attended
-- <a href="https://icerm.brown.edu/programs/sp-s21/">ICERM: Combinatorial Algebraic Geometry</a>, Feb 1 - May 7, 2021
-- <a href="https://www.mn.uio.no/math/english/research/projects/granddrm/events/seminars/seminarspring2021/index.html">Seminar series on basics of (Weil's) Riemann hypothesis</a>, March - June 2021, University of Oslo
-- <a href="https://cas.oslo.no/young-cas-fellow/real-structures-in-discrete-algebraic-symplectic-and-tropical-geometries-reactions-article4636-1374.html">CAS Oslo: Real Structures in Discrete, Algebraic, Symplectic and Tropical Geometries</a>, Oslo, 2 - 5 August 2021
-- <a href="https://sites.google.com/view/tropicalhomologyandhodgetheory">Tropical homology and Hodge theory</a>, 23 - 27 August 2021
-- <a href="http://www.mittag-leffler.se/konferens/goran-gustafsson-symposium">Göran Gustafsson Symposium, Hodge theory and comb. of matroids, Mittag-Leffler</a>, 30 May - 01 June 2022
-- <a href="https://www.mn.uio.no/math/english/research/groups/algebra/events/conferences/nordfjordeid2022/index.html">Topics in real and tropical algebraic geometry, Sophus Lie Conf. Center, Nordfjordeid</a>, 20 - 24 June 2022
-- <a href="https://www.uni-regensburg.de/mathematik/natrop2022/homepage/index.html">Non-Archimedean and Tropical Geometry, Regensburg</a>, 1 - 5 August 2022
-- <a href="https://nmm2022.puremath.no/">Nasjonalt Matematikermøte, Tromsø</a>, 1 - 2 September 2022
-- <a href="https://conferences.cirm-math.fr/2626.html">Real Algebraic Geometry, CIRM</a>, 24 - 28 October 2022
+- Pycon Sweden 2025
+- <a href="https://www.mfo.de/occasion/2320/www_view">Tropical Methods in Geometry, Mathematisches Forschungsinstitut</a>, Oberwolfach, 14 May - 19 May 2023
+- <a href="https://sites.google.com/view/matrocomlondon/home">MaTroCom, Workshop on Matroids and Tropical Combinatorics, QMU <a/>, London, 9 January - 13 January 2023
 - <a href="https://conferences.cirm-math.fr/2607.html">Real Aspects of Geometry, CIRM</a>, 31 October - 4 November 2022
-- <a href="https://sites.google.com/view/matrocomlondon/home">MaTroCom, Workshop on Matroids and Tropical Combinatorics, QMU>London</a>, 9 January - 13 January 2023
-- <a href="https://www.mfo.de/occasion/2320/www_view">Tropical Methods in Geometry, Mathematisches Forschungsinstitut>Oberwolfach</a>, 14 May - 19 May 2023
+- <a href="https://conferences.cirm-math.fr/2626.html">Real Algebraic Geometry, CIRM</a>, 24 - 28 October 2022
+- <a href="https://nmm2022.puremath.no/">Nasjonalt Matematikermøte, Tromsø</a>, 1 - 2 September 2022
+- <a href="https://www.uni-regensburg.de/mathematik/natrop2022/homepage/index.html">Non-Archimedean and Tropical Geometry, Regensburg</a>, 1 - 5 August 2022
+- <a href="https://www.mn.uio.no/math/english/research/groups/algebra/events/conferences/nordfjordeid2022/index.html">Topics in real and tropical algebraic geometry, Sophus Lie Conf. Center, Nordfjordeid</a>, 20 - 24 June 2022
+- <a href="http://www.mittag-leffler.se/konferens/goran-gustafsson-symposium">Göran Gustafsson Symposium, Hodge theory and comb. of matroids, Mittag-Leffler</a>, 30 May - 01 June 2022
+- <a href="https://sites.google.com/view/tropicalhomologyandhodgetheory">Tropical homology and Hodge theory</a>, 23 - 27 August 2021
+- <a href="https://cas-nor.no/index.php/yc-project/real-structures-discrete-algebraic-symplectic-and-tropical-geometries-reactions">CAS Oslo: Real Structures in Discrete, Algebraic, Symplectic and Tropical Geometries</a>, Oslo, 2 - 5 August 2021
+- <a href="https://www.mn.uio.no/math/english/research/projects/granddrm/events/seminars/seminarspring2021/index.html">Seminar series on basics of (Weil's) Riemann hypothesis</a>, March - June 2021, University of Oslo
+- <a href="https://icerm.brown.edu/programs/sp-s21/">ICERM: Combinatorial Algebraic Geometry</a>, Feb 1 - May 7, 2021
+
 - Regular attendance in the <a href="https://sites.google.com/site/cotterillethan/ethan-cotterill-eng/latin-american-real-and-tropical-geometry-seminar">LAGARTOS seminar</a>
 - Regular attendance in the <a href="https://www.mn.uio.no/math/english/research/groups/algebra/events/seminars/">UiO Algebra Seminar</a>
-- Pycon Sweden 2025
 
 ## Posts
 
@@ -81,7 +73,7 @@ TODO: fill out automatically
 Here are some links to useful pages / pages I like:
 
 - <a href="tropical_seminar_uio.html">Tropical seminar</a>
-- <a href="student_seminar.html">Student seminar</a>>
+- <a href="student_seminar.html">Student seminar</a>
 - <a href="https://people.maths.ox.ac.uk/trefethen/pdectb.html">PDE coffee table book</a>
 - <a href="http://courses.washington.edu/me431/handouts/Album-Fluid-Motion-Van-Dyke.pdf">An album of Fluid Motion</a>
 - <a href="https://michaelnielsen.org/">Michael Nilsen's website</a>

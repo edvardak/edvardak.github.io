@@ -6,6 +6,7 @@ module.exports = async function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("style.css");
+  eleventyConfig.addPassthroughCopy("slides");
   eleventyConfig.setLibrary(
   	"md,html", 
   	markdownIt().use(katex, {output: "mathml"})
