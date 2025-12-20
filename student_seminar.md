@@ -7,13 +7,6 @@ layout: base.njk
 
 This is the webpage for the student seminar on the 11th floor of Nils Henrik Abels hus, covering topics within algebra, geometry and topology primarily.
 
-We are fully digital, events and zoom links will be added in the following calendar:
-
-<iframe src="https://calendar.google.com/calendar/embed?src=esb3grkden7qhed6sb4gf0u0v4%40group.calendar.google.com&ctz=Europe%2FOslo" style="border: 0" width="800" height="300" frameborder="0" scrolling="no"></iframe>
-
-Subscribe to the calendar by clicking the bottom right + sign.
-
-
 <section>
     <h2>Past talks</h2>
     <table class="listoftalks">
