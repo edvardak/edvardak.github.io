@@ -31,8 +31,8 @@ title: Edvard Aksnes
 ## Research
 
 
-- <a href="https://arxiv.org/abs/2404.14380">Tropicalization of curve arrangement complements and arroids</a>, 2024
-- <a href="https://arxiv.org/abs/2307.02945">Cohomologically tropical varieties</a>, joint with Omid Amini, Matthieu Piquerez, Kris Shaw, 2023
+- <a href="https://doi.org/10.7146/math.scand.a-156674"> Tropicalization of curve arrangement complements and arroids</a>, MATHEMATICA SCANDINAVICA, 131(2)., 2025,  <a href="https://arxiv.org/abs/2404.14380">ArXiv version</a>.
+- <a href="https://doi.org/10.1017/S1474748025101114">Cohomologically tropical varieties</a>, Journal of the Institute of Mathematics of Jussieu , Volume 24 , Issue 6 , November 2025 , pp. 2543 - 2572, joint with Omid Amini, Matthieu Piquerez, Kris Shaw, 2023, <a href="https://arxiv.org/abs/2307.02945">ArXiv version</a>
 - <a href="https://doi.org/10.1515/advgeom-2023-0017"> Tropical Poincaré duality spaces</a>, In: Advances in Geometry vol. 23, no. 3 (2023), pp. 345-370, <a href="https://arxiv.org/abs/2112.03680 ">ArXiv version</a>, MathSciNet: MR4626316
 
 
