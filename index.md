@@ -8,8 +8,7 @@ layout: base.njk
     </div>
     <div>
         <h1>Edvard Aksnes</h1>
-        <p>I'm a software engineer working for PwC Norway, working in the national Generative AI team.</p>
-        <p>Previously I was a PhD student in Mathematics at the University of Oslo, working in tropical geometry, under the supervision of Kris Shaw.</p>
+        <p>I am a software engineer with a PhD in mathematics, currently leading and architecting production generative AI systems at PwC. I focus on building mathematically grounded systems for complex, high-stakes problems, with responsibility for architecture, deployment, and long-term reliability in real-world environments. I am most effective in settings where problems are ill-specified, technically demanding, and require both rigorous reasoning and robust engineering.</p>
     </div>
 </div>
 
@@ -18,13 +17,17 @@ layout: base.njk
 
 ### Work experience
 
-- Manager, xLoS Generative AI seam, PwC Norway, September 2023 - Present
+- Manager, National Generative AI team, PwC Norway, September 2023 – Present
+  - Tech lead and system architect for large-scale internal GenAI applications
+  - Designed and implemented production backends integrating machine-learning components, structured data, and internal APIs
+  - Responsible for cloud deployment, CI/CD, and operational reliability in Azure-based environments
+
 - Associate, AI/ML group, Risk Advisory Services, PwC Norway, August 2019 - August 2020
 
 ### Education
 
-- Doctoral Research Fellow in Mathematics, Tropical Geometry, University of Oslo, 2020-2024, [Disputation presentation](/slides/thesis/disputation.pdf), [Trial Lecture presentation](/slides/thesis/trial-lecture.pdf)
-- MSc. in Mathematics, Algebra and Geometry, University of Oslo, 2017-2019, [Thesis](https://www.duo.uio.no/bitstream/handle/10852/69428/Master_Edvard_Aksnes_web.pdf?sequence=1&isAllowed=y)
+- Doctoral Research Fellow in Mathematics, Tropical Geometry, University of Oslo, 2020-2024, supervised by Kris Shaw, [Thesis](/slides/thesis/thesis.pdf), [Disputation presentation](/slides/thesis/disputation.pdf), [Trial Lecture presentation](/slides/thesis/trial-lecture.pdf)
+- MSc. in Mathematics, Algebra and Geometry, University of Oslo, 2017-2019, [archived thesis](https://www.duo.uio.no/bitstream/handle/10852/69428/Master_Edvard_Aksnes_web.pdf?sequence=1&isAllowed=y), [alternative link](/slides/thesis/master-thesis.pdf)
 - BSc. in Mathematics, Informatics and Technology, University of Oslo, 2015-2017
 
 
