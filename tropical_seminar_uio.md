@@ -1,5 +1,5 @@
 ---
-permalink: /tropical_seminar_uio.html
+title: UiO Tropical Geometry Learning Seminar
 layout: base.njk
 ---
 

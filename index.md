@@ -1,6 +1,5 @@
 ---
 layout: base.njk
-title: Edvard Aksnes
 ---
 
 <div class="bio">
@@ -48,7 +47,7 @@ title: Edvard Aksnes
 
 
 ## Events attended
-- Pycon Sweden 2025
+- [Pycon Sweden 2025](https://pycon.se/)
 - [Tropical Methods in Geometry, Mathematisches Forschungsinstitut](https://www.mfo.de/occasion/2320/www_view), Oberwolfach, 14 May - 19 May 2023
 - [MaTroCom, Workshop on Matroids and Tropical Combinatorics, QMU ](https://sites.google.com/view/matrocomlondon/home), London, 9 January - 13 January 2023
 - [Real Aspects of Geometry, CIRM](https://conferences.cirm-math.fr/2607.html), 31 October - 4 November 2022

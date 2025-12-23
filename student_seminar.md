@@ -1,4 +1,5 @@
 ---
+title: UiO Math 11th floor Student Seminar
 layout: base.njk
 ---
 
