@@ -1,5 +1,4 @@
 ---
-permalink: /student_seminar.html
 layout: base.njk
 ---
 

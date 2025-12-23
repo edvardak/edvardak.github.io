@@ -66,14 +66,17 @@ title: Edvard Aksnes
 
 ## Posts
 
-TODO: fill out automatically
-
+<ul>
+{%- for post in collections.post -%}
+  <li><a href="{{ post.url }}">{{ post.data.title }}</a>, {{ post.data.date | isoDate }}</li>
+{%- endfor -%}
+</ul>
 
 ## Links
 Here are some links to useful pages / pages I like:
 
 - [Tropical seminar](tropical_seminar_uio)
-- [Student seminar](student_seminar.html)
+- [Student seminar](student_seminar)
 - [PDE coffee table book](https://people.maths.ox.ac.uk/trefethen/pdectb.html)
 - [An album of Fluid Motion](http://courses.washington.edu/me431/handouts/Album-Fluid-Motion-Van-Dyke.pdf)
 - [Michael Nilsen's website](https://michaelnielsen.org/)
