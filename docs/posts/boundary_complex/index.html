@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 
@@ -17,7 +16,7 @@
             }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 
 <body>
@@ -60,10 +59,10 @@
                 Here is some <code>Macaulay2</code> code that will compute the boundary complex in this case:
             <pre><code>
 boundaryComplex = method()
-boundaryComplex := listOfDivisors -> (
+boundaryComplex := listOfDivisors -&gt; (
 -- Helper function, takes list of polynomials and determines 
 -- if their intersection is irrelevant ideal
-intersectionIsIrrelevantIdeal = s -> (
+intersectionIsIrrelevantIdeal = s -&gt; (
     radical(ideal(s)) != ideal(y_0,y_1,y_2)
     );
     -- Select all possible subsets of divisors
@@ -83,7 +82,7 @@ intersectionIsIrrelevantIdeal = s -> (
     faceList = {};
     for i in 0..(#faceSubs-1) do (
         if mask#i then (
-            faceMonomials=append(faceMonomials,fold((i,j)->i*j, faceSubs#i));
+            faceMonomials=append(faceMonomials,fold((i,j)-&gt;i*j, faceSubs#i));
             faceList=append(faceList,faceNums#i);
         )
     );
@@ -138,26 +137,25 @@ closePort()
             <p>For three-dimensional simplicial complexes, the following code will transform the list <code>lf</code> into a string which can be pasted in <code>polymake</code> to create the corresponding <code>polymake</code> simplicial object:
 <pre><code>
 facesToPolymakeSimplicialComplex = method()
-facesToPolymakeSimplicialComplex := lst -> (
+facesToPolymakeSimplicialComplex := lst -&gt; (
 listStr = toString(lst);
 listStr = replace("{","[",listStr);
 listStr = replace("}","]",listStr);
-out = concatenate({"$s = new SimplicialComplex(INPUT_FACES=>",  listStr, ");"});
+out = concatenate({"$s = new SimplicialComplex(INPUT_FACES=&gt;",  listStr, ");"});
 out
 )
 
 facesToPolymakeSimplicialComplex(lf)
 </code></pre>
-<p>This can then be visualized using the command <code>$s->VISUAL;</code></p>
+<p>This can then be visualized using the command <code>$s-&gt;VISUAL;</code></p>
             </p>
-        </section>
+        </p></section>
         <section>
             <b>Bibliography:</b>
             <ul>
                 <li>
                     Grayson, Daniel R. and Stillman, Michael E., <b>Macaulay2, a software system for research in
-                        algebraic geometry</b>, <a
-                        href="http://www.math.uiuc.edu/Macaulay2/">http://www.math.uiuc.edu/Macaulay2/</a>
+                        algebraic geometry</b>, <a href="http://www.math.uiuc.edu/Macaulay2/">http://www.math.uiuc.edu/Macaulay2/</a>
                 </li>
                 <li>
                     Ewgenij Gawrilow and Michael Joswig,  <b>polymake: a framework for analyzing convex polytopes</b>, <a href="https://polymake.org/doku.php/start">https://polymake.org/doku.php/start</a>
@@ -168,4 +166,7 @@ facesToPolymakeSimplicialComplex(lf)
     </main>
 </body>
 
-</html>
+</head><body><!DOCTYPE html>
+
+
+</body></html>
