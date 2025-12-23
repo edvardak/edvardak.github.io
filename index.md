@@ -67,9 +67,9 @@ title: Edvard Aksnes
 ## Posts
 
 <ul>
-{%- for post in collections.post -%}
+{% for post in collections.post reversed %}
   <li><a href="{{ post.url }}">{{ post.data.title }}</a>, {{ post.data.date | isoDate }}</li>
-{%- endfor -%}
+{% endfor %}
 </ul>
 
 ## Links

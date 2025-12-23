@@ -7,6 +7,9 @@ module.exports = async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("slides");
 
+  eleventyConfig.addPassthroughCopy("posts/boundary_cx");
+  eleventyConfig.addPassthroughCopy("posts/complex_plotting_plots");
+
   eleventyConfig.addPlugin(mathjaxPlugin);
 
   eleventyConfig.addFilter("isoDate", (dateObj) => {
