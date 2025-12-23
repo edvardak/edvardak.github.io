@@ -14,11 +14,11 @@ layout: base.njk
 </div>
 
 
-## CV
+## CV {#cv}
 
 ### Work experience
 
-- Manager, xLoS Generative AI team, PwC Norway, September 2023 - Present
+- Manager, xLoS Generative AI seam, PwC Norway, September 2023 - Present
 - Associate, AI/ML group, Risk Advisory Services, PwC Norway, August 2019 - August 2020
 
 ### Education
@@ -28,14 +28,14 @@ layout: base.njk
 - BSc. in Mathematics, Informatics and Technology, University of Oslo, 2015-2017
 
 
-## Research
+## Research {#research}
 
 - [Tropicalization of curve arrangement complements and arroids](https://doi.org/10.7146/math.scand.a-156674), MATHEMATICA SCANDINAVICA, 131(2)., 2025,  [ArXiv version](https://arxiv.org/abs/2404.14380).
 - [Cohomologically tropical varieties](https://doi.org/10.1017/S1474748025101114), Journal of the Institute of Mathematics of Jussieu , Volume 24 , Issue 6 , November 2025 , pp. 2543 - 2572, joint with Omid Amini, Matthieu Piquerez, Kris Shaw, 2023, [ArXiv version](https://arxiv.org/abs/2307.02945)
 - [Tropical Poincaré duality spaces](https://doi.org/10.1515/advgeom-2023-0017), In: Advances in Geometry vol. 23, no. 3 (2023), pp. 345-370, [ArXiv version](https://arxiv.org/abs/2112.03680 ), MathSciNet: MR4626316
 
 
-## Talks
+## Talks {#talks}
 
 - [Exceptions aren't cool](/slides/personal/Exceptions_aren_t_cool.pdf), Tech Toks, PwC Norway, 2025-10-15
 - [Tropical Poincaré duality spaces](http://www.fields.utoronto.ca/talks/Tropical-Poincar%C3%A9-duality-spaces), The Fields Institute Matroid seminar, 2023-03-02
@@ -63,7 +63,7 @@ layout: base.njk
 - Regular attendance in the [LAGARTOS seminar](https://sites.google.com/site/cotterillethan/ethan-cotterill-eng/latin-american-real-and-tropical-geometry-seminar)
 - Regular attendance in the [UiO Algebra Seminar](https://www.mn.uio.no/math/english/research/groups/algebra/events/seminars/)
 
-## Posts
+## Posts {#posts}
 
 <ul>
 {% for post in collections.post reversed %}

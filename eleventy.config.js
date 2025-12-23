@@ -1,5 +1,7 @@
 const mathjaxPlugin = require("eleventy-plugin-mathjax");
 const { DateTime } = require("luxon");
+const markdownIt = require("markdown-it");
+const markdownItAttrs = require("markdown-it-attrs");
 
 
 module.exports = async function (eleventyConfig) {
@@ -12,6 +14,9 @@ module.exports = async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("posts/complex_plotting_plots");
 
   eleventyConfig.addPlugin(mathjaxPlugin);
+
+  const md = markdownIt({ html: true }).use(markdownItAttrs);
+  eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addFilter("isoDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toISODate();

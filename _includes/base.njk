@@ -18,5 +18,8 @@
     </title>
 
   </head>
-  <body>{{ content | safe }}</body>
+  <body>
+    <main>{{ content | safe }}</main>
+    {% include "nav.njk" %}
+  </body>
 </html>

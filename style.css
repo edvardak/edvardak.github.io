@@ -60,13 +60,30 @@ h1:first-child {
   margin-top: 0;
 }
 
+h2 {
+  scroll-margin-top: 2rem;
+}
+
 .bio {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-gap: 2%;
+  gap: 1.5rem;
+  align-items: start;
 }
 
-/* Links */
+@media (max-width: 600px) {
+  .bio {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .bio img {
+    margin: 0 auto;
+    width: 160px;
+  }
+}
+
+
 a {
   color: #4b2aa6;
 }
@@ -122,8 +139,30 @@ mjx-assistive-mml {
   margin: 0 !important;
 }
 
+.site-nav {
+  margin-top: 3rem;
+  padding-top: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.site-nav a {
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
+   .site-nav {
+    border-top-color: rgba(255, 255, 255, 0.15);
+  }
+
   body {
     color: #e6e2da;
 
